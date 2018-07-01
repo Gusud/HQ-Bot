@@ -6,9 +6,9 @@ This works for iPhones only and should work for both Windows and MacOS (Although
 
 Python 3.5 used, the significant packages that were used are:
 
-* pyautogui - Taking Screenshots of the game
-* pytesseract - The OCR of the question
-* requests - Getting how many results google comes up with
+  * pyautogui - Taking Screenshots of the game
+  * pytesseract - The OCR of the question
+  * requests - Getting how many results google comes up with
 
 LonelyScreen is an IOS screen mirroring application that can be downloaded [here][LonelyScreenLink], the download of this application is required.
 
@@ -21,10 +21,10 @@ Windows:
 
   3) Go to Command Prompt and type the following commands sequentially
 
-  * pip install pyautogui
-  * pip install pytesseract
+    * pip install pyautogui
+    * pip install pytesseract
 
-  (If you have an error, try reinstalling python and ensure that the "Add Python to PATH" box is ticked)
+    (If you have an error, try reinstalling python and ensure that the "Add Python to PATH" box is ticked)
 
   4) Ensure you have an internet connection and an iPhone that can support AirPlay.
 
