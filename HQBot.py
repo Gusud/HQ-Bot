@@ -18,10 +18,7 @@ def hits(string):
 
 def getQuestion():
     questionBook = []
-    got_question = ((pytesseract.image_to_string(p.screenshot(region=(
-        round(1440 * GetSystemMetrics(0) / 3840), round(450 * GetSystemMetrics(1) / 2160),
-        round(980 * GetSystemMetrics(0) / 3840),
-        round(370 * GetSystemMetrics(1) / 2160))))).replace('\n', " ")).replace("  ", " ")
+    got_question = ((pytesseract.image_to_string(p.screenshot(region=(round(1440 * GetSystemMetrics(0) / 3840), round(450 * GetSystemMetrics(1) / 2160),round(980 * GetSystemMetrics(0) / 3840),round(370 * GetSystemMetrics(1) / 2160))))).replace('\n', " ")).replace("  ", " ")
     while True:
         if got_question is not None:
             if got_question in questionBook:
@@ -33,14 +30,7 @@ def getQuestion():
 def getOptions():
     potential = []
     for i in range(3):
-        answer = (pytesseract.image_to_string(p.screenshot(region=(round(1510 * GetSystemMetrics(0) / 3840),
-                                                                   round(640 * GetSystemMetrics(1) / 2160) + (
-                                                                       round(186 * GetSystemMetrics(1) / 2160) * (
-                                                                       i + 1)),
-                                                                   round(820 * GetSystemMetrics(0) / 3840),
-                                                                   round(120 * GetSystemMetrics(1) / 2160))))).replace(
-            '\n',
-            " ")
+        answer = (pytesseract.image_to_string(p.screenshot(region=(round(1510 * GetSystemMetrics(0) / 3840), round(640 * GetSystemMetrics(1) / 2160) + (round(186 * GetSystemMetrics(1) / 2160) * (i + 1)),round(820 * GetSystemMetrics(0) / 3840),round(120 * GetSystemMetrics(1) / 2160))))).replace('\n'," ")
         potential.append(answer)
     return potential
 
@@ -108,3 +98,5 @@ def game():
                 newQuestion += i
         solve(question, options, negative, speechMarks)
         g += 1
+
+game()
