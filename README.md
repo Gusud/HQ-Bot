@@ -2,6 +2,8 @@
 A python bot which gathers and (sometimes) solves questions from the HQ trivia app.
 This works for iPhones only and should work for both Windows and MacOS (Although only tested on windows)
 
+The goal of this project was to make a program that could try solve a HQ question fast and accurately
+
 ## Requirements
 
 Python 3.5 used, the significant packages that were used are:
@@ -24,7 +26,7 @@ Windows:
     * pip install pyautogui
     * pip install pytesseract
 
-    (If you have an error, try reinstalling python and ensure that the "Add Python to PATH" box is ticked)
+    (If you have an error, try reinstalling python and ensure the "Add Python to PATH" box is ticked)
 
   4) Install the tesseract training files [here][TesseractFile] and follow installation steps.
 

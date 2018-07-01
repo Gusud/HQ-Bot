@@ -1,6 +1,3 @@
-print("DISCLAIMER: This is not 100% accurate and may give false results due to no fault of the program. \nThis tool "
-      "was made by Gusud to be quick (with the program usually solving a question in 4 seconds).\nPlease use this "
-      "tool for hints rather than certain answers!\n")
 import pyautogui as p
 import pytesseract
 from win32api import GetSystemMetrics
