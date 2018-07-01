@@ -1,5 +1,6 @@
 # HQ-Bot
 A python bot which gathers and (sometimes) solves questions from the HQ trivia app.
+This works for iPhones only and should work for both Windows and MacOS (Although only tested on windows)
 
 ## Requirements
 
@@ -25,6 +26,19 @@ Windows:
 
   (If you have an error, try reinstalling python and ensure that the "Add Python to PATH" box is ticked)
 
+  4) Ensure you have an internet connection and an iPhone that can support AirPlay.
+
+# Usage
+
+(NOTE: This script only works for one monitor - please disable any secondary monitors you have. Also please ensure that GUI scaling is set to 100%, as this can mess up where the screenshot is taken)
+
+1) Open LonelyScreen and make it FULL SCREEN.
+
+2) Connect your iPhone to LonelyScreen by swiping up from the bottom of your IOS device and clicking the TV looking icon, then click the option presented.
+
+3) Open the HQBot.py file, ensure that this is in the foreground but not obstructing your view of your device on the screen.
+
+4) When a question comes up on HQ Trivia press enter in the bot window and the hint will be given to you.
 
   [PythonLink]: https://www.python.org/ftp/python/3.5.2/python-3.5.2.exe
   [LonelyScreenLink]: https://www.lonelyscreen.com/download.html
