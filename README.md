@@ -12,7 +12,7 @@ Python 3.5 used, the significant packages that were used are:
 
 LonelyScreen is an IOS screen mirroring application that can be downloaded [here][LonelyScreenLink], the download of this application is required.
 
-# Installation
+## Installation
 Windows:
 
   1) Install [Python 3.5][PythonLink]
@@ -26,9 +26,11 @@ Windows:
 
     (If you have an error, try reinstalling python and ensure that the "Add Python to PATH" box is ticked)
 
-  4) Ensure you have an internet connection and an iPhone that can support AirPlay.
+  4) Install the tesseract training files [here][TesseractFile] and follow installation steps.
 
-# Usage
+  5) Ensure you have an Apple device and an IOS version that can support AirPlay.
+
+## Usage
 
 (NOTE: This script only works for one monitor - please disable any secondary monitors you have. Also please ensure that GUI scaling is set to 100%, as this can mess up where the screenshot is taken)
 
@@ -38,7 +40,8 @@ Windows:
 
 3) Open the HQBot.py file, ensure that this is in the foreground but not obstructing your view of your device on the screen.
 
-4) When a question comes up on HQ Trivia press enter in the bot window and the hint will be given to you.
+4) When a question comes up on HQ Trivia press the enter key in the bot window, the suggested answer will be given to you.
 
+  [TesseractFile]: https://digi.bib.uni-mannheim.de/tesseract/tesseract-ocr-setup-3.05.02-20180621.exe
   [PythonLink]: https://www.python.org/ftp/python/3.5.2/python-3.5.2.exe
   [LonelyScreenLink]: https://www.lonelyscreen.com/download.html
