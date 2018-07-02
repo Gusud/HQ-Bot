@@ -2,9 +2,10 @@ import pyautogui as p
 import pytesseract
 from win32api import GetSystemMetrics
 import requests
+from tkinter import *
+from PIL import *
 
 pytesseract.pytesseract.tesseract_cmd = 'C:/Program Files (x86)/Tesseract-OCR/tesseract'
-
 
 def hits(string):
     content = (requests.get("https://www.google.co.uk/search?q=" + string)).text
@@ -37,13 +38,18 @@ def solve(full_question, potential, reverse, quote=None):
     best_score = int()
     worst_score = 100000
     worst_option = str()
-    # currentScore = 0
+    total_score = 0
+    score_list = []
+    current_score = 0
 
     for i in potential:
         if quote is None:
             current_score = hits(str(full_question + ' "' + i + '"'))
+            total_score += current_score
+            score_list.append(current_score)
         else:
             current_score = hits(quote + '"' + i + '"')
+            total_score += current_score
         print(i, ": ", current_score)
         if reverse is False and current_score > best_score:
             best_score = current_score
@@ -51,7 +57,8 @@ def solve(full_question, potential, reverse, quote=None):
         if reverse and current_score < worst_score:
             worst_score = current_score
             worstOption = i
-
+    for i in range(3):
+        print(potential[i],": ", round(score_list[i]*100/total_score),"%")
     if reverse:
         # print(worstOption)
         print("\n\n-- negative --\n\n" + worst_option.upper())
@@ -62,15 +69,16 @@ def solve(full_question, potential, reverse, quote=None):
 
 
 def game():
+
     negatives = ["not", "isnt", "except", "dont", "doesnt", "wasnt", "wouldnt", "cant", "never"]
-    g = 1
+    q = 1
     while True:
 
         negative = False
         speechMarks = ""
         whichQuestion = False
 
-        print("Question " + str(q + 1) + ":\n")
+        print("Question {0}:\n".format(str(q)))
         input()
         question = getQuestion()
         newQuestion = ""
@@ -94,6 +102,6 @@ def game():
             else:
                 newQuestion += i
         solve(question, options, negative, speechMarks)
-        g += 1
+        q += 1
 
 game()
