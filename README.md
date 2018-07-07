@@ -42,7 +42,15 @@ Windows:
 
 3) Open the HQBot.py file, ensure that this is in the foreground but not obstructing your view of your device on the screen.
 
-4) When a question comes up on HQ Trivia press the enter key in the bot window, the suggested answer will be given to you.
+4) When a question comes up on HQ Trivia press the enter key in the bot window, the suggested answer will be given to you along with the popularity adjusted result.
+
+## Tips to go far
+
+ If the popularity result and the actual result are the same, then that answer is safe to assume correct.
+
+ The popularity result should probably be used when there is a large gap in popularity score between each result.
+
+ Finally, the actual result should be used when the popularity scores are too close to assume an answer.
 
   [TesseractFile]: https://digi.bib.uni-mannheim.de/tesseract/tesseract-ocr-setup-3.05.02-20180621.exe
   [PythonLink]: https://www.python.org/ftp/python/3.5.2/python-3.5.2.exe
