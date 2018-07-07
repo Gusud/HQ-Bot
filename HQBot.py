@@ -2,17 +2,26 @@ import pyautogui as p
 import pytesseract
 from win32api import GetSystemMetrics
 import requests
-from tkinter import *
 from PIL import *
+import wikipedia
 
 pytesseract.pytesseract.tesseract_cmd = 'C:/Program Files (x86)/Tesseract-OCR/tesseract'
 
 def hits(string):
+    print("https://www.google.co.uk/search?q=" + string)
     content = (requests.get("https://www.google.co.uk/search?q=" + string)).text
-    return int(
-        content[content.find('<div class="sd" id="resultStats">About ') + 39:content.find(" results</div>")].replace(
-            ',', ''))
+    print(content[content.find('<div class="sd" id="resultStats">About ') + 39:content.find(" results</div>")].replace(',', ''))
 
+def wikiHits(string, potential):
+    score_list=[]
+    page=wikipedia.page(string)
+    print(page)
+    print(page.url)
+    content=page.content
+    split=(content.split())
+    for i in potential:
+        score_list.append(split.count(i))
+    return score_list
 
 def getQuestion():
     questionBook = []
@@ -34,6 +43,7 @@ def getOptions():
 
 
 def solve(full_question, potential, reverse, quote=None):
+
     best_option = str()
     best_score = int()
     worst_score = 100000
@@ -43,14 +53,15 @@ def solve(full_question, potential, reverse, quote=None):
     current_score = 0
 
     for i in potential:
-        if quote is None:
+        if quote is "":
             current_score = hits(str(full_question + ' "' + i + '"'))
-            total_score += current_score
-            score_list.append(current_score)
         else:
-            current_score = hits(quote + '"' + i + '"')
-            total_score += current_score
-        print(i, ": ", current_score)
+            try:
+                current_score = wikiHits(quote, potential)[potential.index(i)]
+            except:
+                current_score = hits(quote + '"' + i + '"')
+        total_score += current_score
+        score_list.append(current_score)
         if reverse is False and current_score > best_score:
             best_score = current_score
             best_option = i
@@ -58,7 +69,7 @@ def solve(full_question, potential, reverse, quote=None):
             worst_score = current_score
             worstOption = i
     for i in range(3):
-        print(potential[i],": ", round(score_list[i]*100/total_score),"%")
+        print(potential[i],": ", round((score_list[i]*100)/total_score),"%")
     if reverse:
         # print(worstOption)
         print("\n\n-- negative --\n\n" + worst_option.upper())
@@ -96,7 +107,7 @@ def game():
             newQuestion = ""
 
         for i in question.split():
-            if i.lower() + "\n" in negatives:
+            if i.lower() in negatives:
                 negative = True
                 break
             else:
