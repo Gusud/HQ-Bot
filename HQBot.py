@@ -8,15 +8,12 @@ import wikipedia
 pytesseract.pytesseract.tesseract_cmd = 'C:/Program Files (x86)/Tesseract-OCR/tesseract'
 
 def hits(string):
-    print("https://www.google.co.uk/search?q=" + string)
     content = (requests.get("https://www.google.co.uk/search?q=" + string)).text
-    print(content[content.find('<div class="sd" id="resultStats">About ') + 39:content.find(" results</div>")].replace(',', ''))
+    return int(content[content.find('<div class="sd" id="resultStats">About ') + 39:content.find(" results</div>")].replace(',', ''))
 
 def wikiHits(string, potential):
     score_list=[]
     page=wikipedia.page(string)
-    print(page)
-    print(page.url)
     content=page.content
     split=(content.split())
     for i in potential:
@@ -51,8 +48,16 @@ def solve(full_question, potential, reverse, quote=None):
     total_score = 0
     score_list = []
     current_score = 0
-
+    popularity = []
+    totalpopularity=0
+    worstPop=1000000
+    worstPoption=str()
+    bestPop=0
+    bestPoption=str()
+    pop_score=0
+    
     for i in potential:
+        curPop=hits(i)
         if quote is "":
             current_score = hits(str(full_question + ' "' + i + '"'))
         else:
@@ -60,22 +65,37 @@ def solve(full_question, potential, reverse, quote=None):
                 current_score = wikiHits(quote, potential)[potential.index(i)]
             except:
                 current_score = hits(quote + '"' + i + '"')
-        total_score += current_score
+        total_score += int(current_score)
         score_list.append(current_score)
+
+        pop_score=current_score*1000/curPop
+        popularity.append(pop_score)
+        if reverse is False and pop_score > bestPop:
+            bestPop = pop_score
+            bestPoption = i
+
+        if reverse and pop_score < worstPop:
+            worstPop = pop_score
+            worstPoption = i
+            
         if reverse is False and current_score > best_score:
             best_score = current_score
             best_option = i
         if reverse and current_score < worst_score:
             worst_score = current_score
             worstOption = i
+            
+    totalpopularity=popularity[0]+popularity[1]+popularity[2]
+    
+    
     for i in range(3):
-        print(potential[i],": ", round((score_list[i]*100)/total_score),"%")
+        print(potential[i],": ", str(round((score_list[i]*100)/total_score))+"%","        Pop score: ",popularity[i])
     if reverse:
         # print(worstOption)
-        print("\n\n-- negative --\n\n" + worst_option.upper())
+        print("\n\n-- negative --\n\n" + worst_option.upper() , "        Pop worst: ",worstPoption.upper())
         return True
     else:
-        print("\n\n\n" + best_option.upper())
+        print("\n\n\n" + best_option.upper(), "        Pop best: ",bestPoption.upper())
         return False
 
 
@@ -89,7 +109,7 @@ def game():
         speechMarks = ""
         whichQuestion = False
 
-        print("Question {0}:\n".format(str(q)))
+        print("Question {0}:".format(str(q)))
         input()
         question = getQuestion()
         newQuestion = ""
