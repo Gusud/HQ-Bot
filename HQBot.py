@@ -89,7 +89,7 @@ def solve(full_question, potential, reverse, quote=None):
     
     
     for i in range(3):
-        print(potential[i],": ", str(round((score_list[i]*100)/total_score))+"%","        Popularity: ",popularity[i]*100/totalpopularity)
+        print(potential[i],": ", str(round((score_list[i]*100)/total_score))+"%","        Popularity: ",str(round(popularity[i]*100/totalpopularity))+"%")
     if reverse:
         # print(worstOption)
         print("\n\n-- negative --\n\n" + worst_option.upper() , "        Pop worst: ",worstPoption.upper())
