@@ -44,6 +44,10 @@ Windows:
 
 4) When a question comes up on HQ Trivia press the enter key in the bot window, the suggested answer will be given to you along with the popularity adjusted result.
 
+<img src="https://github.com/Gusud/HQ-Bot/blob/master/Screenshots/Screenshot1.PNG" width="900" height="540" />
+<img src="https://github.com/Gusud/HQ-Bot/blob/master/Screenshots/Screenshot2.PNG" width="900" height="540" />
+
+
 ## Tips to go far
 
  If the popularity result and the actual result are the same, then that answer is safe to assume correct.
